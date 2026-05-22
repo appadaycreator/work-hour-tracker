@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>残業・労働時間トラッカー【無料】記録・管理アプリ</title>
+    <meta name="description" content="月の残業時間・有給消化率を記録。36協定の上限超過アラート付き。登録不要・完全無料でご利用いただけます。">
+    <link rel="canonical" href="https://appadaycreator.github.io/work-hour-tracker/">
+    <meta property="og:title" content="残業・労働時間トラッカー【無料】記録・管理アプリ">
+    <meta property="og:description" content="月の残業時間・有給消化率を記録。36協定の上限超過アラート付き。登録不要・完全無料でご利用いただけます。">
+    <meta property="og:url" content="https://appadaycreator.github.io/work-hour-tracker/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏰</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.clarity.ms">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- GTM -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');</script>
+    <!-- Clarity -->
+    <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","s3t9vl8h3v");</script>
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"残業・労働時間トラッカー","description":"月の残業時間・有給消化率を記録。36協定の上限超過アラート付き。登録不要・完全無料でご利用いただけます。","url":"https://appadaycreator.github.io/work-hour-tracker/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}}</script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; background: linear-gradient(135deg, #E0E7FF 0%, #EEF2FF 100%); min-height: 100vh; color: #333; line-height: 1.6; }
+        .site-header { background: #4338CA; color: white; padding: 32px 20px; text-align: center; }
+        .site-header .emoji { font-size: 52px; margin-bottom: 8px; }
+        .site-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .site-header p { font-size: 14px; opacity: 0.9; }
+        .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+        .card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 16px; }
+        .btn { background: #4338CA; color: white; border: none; padding: 14px 24px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; width: 100%; transition: opacity .2s; }
+        .btn:hover { opacity: 0.9; }
+        .btn:active { transform: scale(0.98); }
+        input, select, textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 15px; margin-top: 4px; font-family: inherit; }
+        input:focus, select:focus { outline: none; border-color: #4338CA; }
+        label { font-size: 13px; font-weight: 600; color: #555; display: block; margin-top: 14px; margin-bottom: 2px; }
+        .result { display: none; }
+        .result.show { display: block; }
+        .result-value { font-size: 36px; font-weight: 700; color: #4338CA; text-align: center; padding: 16px 0; }
+        .badge { display: inline-block; background: #4338CA20; color: #4338CA; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        /* ── サービス固有CSS ── */
+
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <header class="site-header">
+        <div class="emoji">⏰</div>
+        <h1>残業・労働時間トラッカー</h1>
+        <p>月の残業時間・有給消化率を記録。36協定の上限超過アラート付き。</p>
+    </header>
+
+    <main class="container">
+        <ins class="adsbygoogle" style="display:block;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+        <div class="card">
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:16px;">⏰ 記録を追加</h2>
+          <label style="font-size:13px;color:#555;">日付</label>
+          <input type="date" id="rec-date" style="width:100%;padding:8px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:14px;">
+          <label style="font-size:13px;color:#555;">残業時間（時間）</label>
+          <input type="number" id="overtime" placeholder="例: 2.5" min="0" max="24" step="0.5" style="width:100%;padding:8px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:14px;">
+          <label style="font-size:13px;color:#555;">総労働時間（時間）</label>
+          <input type="number" id="total-hours" placeholder="例: 10.0" min="0" max="24" step="0.5" style="width:100%;padding:8px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:14px;">
+          <label style="font-size:13px;color:#555;">有給取得</label>
+          <select id="paid-leave" style="width:100%;padding:8px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:10px;font-size:14px;">
+            <option value="0">なし</option><option value="1">全日</option><option value="0.5">半日</option>
+          </select>
+          <button class="btn" style="margin-top:16px;" onclick="addEntry()">追加する</button>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <h2 style="font-size:16px;font-weight:700;">📋 記録一覧</h2>
+            <span id="entry-count" style="font-size:12px;color:#999;"></span>
+          </div>
+          <div id="entries">
+            <p style="text-align:center;color:#bbb;font-size:14px;padding:20px;">まだ記録がありません</p>
+          </div>
+        </div>
+        <div class="result" id="result" style="margin-top:12px;">
+          <div class="card">
+            <h3 style="font-size:14px;font-weight:700;margin-bottom:8px;color:#4338CA;">📊 サマリー</h3>
+            <div id="summary"></div>
+          </div>
+        </div>
+
+        <!-- 関連サービス -->
+        <div class="card" style="margin-top:8px;">
+            <h3 style="font-size:13px;font-weight:600;color:#888;margin-bottom:10px;">🔗 関連サービス</h3>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+                <a href="https://appadaycreator.github.io/taskflow-timer/" style="color:#6366f1;font-size:13px;text-decoration:none;padding:6px 0;border-bottom:1px solid #f1f5f9;">TaskFlow Timer →</a>
+                <a href="https://appadaycreator.github.io/part-time-vs-fulltime-advisor/" style="color:#6366f1;font-size:13px;text-decoration:none;padding:6px 0;border-bottom:1px solid #f1f5f9;">💼 パートvs正社員 収入比較 →</a>
+                <a href="https://appadaycreator.github.io/remote-work-advisor/" style="color:#6366f1;font-size:13px;text-decoration:none;padding:6px 0;border-bottom:1px solid #f1f5f9;">リモートワーク環境・コスト診断 →</a>
+            </div>
+        </div>
+
+        <ins class="adsbygoogle" style="display:block;margin:12px 0" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </main>
+
+    <footer style="text-align:center;padding:20px;color:white;font-size:12px;opacity:0.75;margin-top:8px;">
+        <p><a href="https://appadaycreator.github.io/" style="color:white;">AppADayCreator</a>
+        | <a href="privacy-policy.html" style="color:white;">プライバシーポリシー</a>
+        | <a href="terms.html" style="color:white;">利用規約</a>
+        | <a href="contact.html" style="color:white;">お問い合わせ</a></p>
+        <p style="margin-top:6px;">© 2025 AppADayCreator. All services are free.</p>
+    </footer>
+
+    <script>
+    // ★ここだけ実装（約12行）★
+    const KEY='work-hour-tracker';
+    function getEntryData(){{
+      const date=document.getElementById('rec-date').value;
+      const ot=parseFloat(document.getElementById('overtime').value||'0');
+      const th=parseFloat(document.getElementById('total-hours').value||'0');
+      const pl=parseFloat(document.getElementById('paid-leave').value||'0');
+      if(!date){{ alert('日付を入力してください'); return null; }}
+      if(isNaN(ot)||ot<0){{ alert('残業時間を正しく入力してください'); return null; }}
+      return {{ date, ot, th, pl }};
+    }}
+    function renderEntry(e){{
+      const alert36=e.ot>45?'<span style="color:#ef4444;font-size:11px;margin-left:6px;">⚠ 36協定注意</span>':'';
+      const plStr=e.pl==1?'有給1日':e.pl==0.5?'有給0.5日':'';
+      return `<div style="padding:10px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;">${{e.date}} 残業<b>${{e.ot}}</b>h 労働<b>${{e.th}}</b>h ${{plStr}}${{alert36}}</span><button onclick="del(${{e.id}})" style="color:#ef4444;border:none;background:none;cursor:pointer;font-size:16px;">×</button></div>`;
+    }}
+    function getSummary(entries){{
+      const totalOt=entries.reduce((s,e)=>s+e.ot,0);
+      const totalTh=entries.reduce((s,e)=>s+e.th,0);
+      const totalPl=entries.reduce((s,e)=>s+e.pl,0);
+      const warn=totalOt>45?`<p style="color:#ef4444;font-weight:700;margin-top:8px;">⚠ 残業累計が45時間を超えています（36協定上限）</p>`:'';
+      return `<p style="font-size:14px;color:#333;">残業累計: <b>${{totalOt.toFixed(1)}}時間</b>　総労働: <b>${{totalTh.toFixed(1)}}時間</b>　有給: <b>${{totalPl}}日</b></p>${{warn}}`;
+    }}
+    // ★以下変更不要★
+    let entries=JSON.parse(localStorage.getItem(KEY)||'[]');
+    document.addEventListener('DOMContentLoaded',()=>{{ renderAll(); }});
+    function addEntry(){{
+      const d=getEntryData(); if(!d) return;
+      entries.unshift({{id:Date.now(),date:new Date().toLocaleDateString('ja-JP'),...d}});
+      localStorage.setItem(KEY,JSON.stringify(entries));
+      renderAll(); document.querySelectorAll('input:not([type=submit])').forEach(i=>i.value='');
+      document.getElementById('result').classList.add('show');
+    }}
+    function del(id){{ entries=entries.filter(e=>e.id!==id); localStorage.setItem(KEY,JSON.stringify(entries)); renderAll(); }}
+    function renderAll(){{
+      const c=document.getElementById('entries'); const ec=document.getElementById('entry-count');
+      if(ec) ec.textContent=entries.length+'件';
+      c.innerHTML=entries.length?entries.map(renderEntry).join(''):'<p style="text-align:center;color:#bbb;padding:16px;">まだ記録がありません</p>';
+      const s=document.getElementById('summary'); if(s) s.innerHTML=getSummary(entries);
+    }}
+    </script>
+</body>
+</html>

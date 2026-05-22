@@ -1,0 +1,8 @@
+{
+  "name": "Work Hour Tracker",
+  "short_name": "work-hour-tr",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1"
+}
