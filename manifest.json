@@ -3,7 +3,7 @@
   "short_name": "work-hour-tr",
   "start_url": "/work-hour-tracker/",
   "display": "standalone",
-  "background_color": "#6366f1",
+  "background_color": "#ffffff",
   "theme_color": "#7c3aed",
   "scope": "/work-hour-tracker/"
 }
