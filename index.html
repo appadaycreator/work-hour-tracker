@@ -102,6 +102,19 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
         .result{display:none}
         .result.show{display:block}
         .summary-line{background:var(--blue-50);border-radius:10px;padding:12px 14px;font-size:14px}
+        .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+        .metric{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center;box-shadow:0 3px 10px rgba(15,23,42,.04)}
+        .metric .l{font-size:11px;color:var(--gray);font-weight:600}
+        .metric .v{font-size:22px;font-weight:800;color:var(--ink);line-height:1.2;margin-top:3px}
+        .metric .v small{font-size:11px;font-weight:700;color:var(--gray)}
+        .metric .v.blue{color:var(--blue)}.metric .v.amber{color:var(--amber)}
+        .summary-warn{color:#ef4444;font-weight:700;font-size:13px;margin-top:10px;display:none}
+        .summary-warn.show{display:block}
+        .gauge{--p:0;width:140px;height:140px;border-radius:50%;margin:6px auto 4px;background:conic-gradient(var(--gauge-c,var(--blue)) calc(var(--p)*1%),#e2e8f0 0);display:flex;align-items:center;justify-content:center;position:relative}
+        .gauge::before{content:"";position:absolute;inset:14px;background:#fff;border-radius:50%}
+        .gauge .gv{position:relative;text-align:center}
+        .gauge .gv b{display:block;font-size:26px;font-weight:800;color:var(--gauge-c,var(--blue));line-height:1}
+        .gauge .gv span{font-size:10.5px;color:var(--gray);font-weight:600}
         .chart-box{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
         .chart-box h4{font-size:13px;font-weight:700;color:var(--blue);margin-bottom:10px;display:flex;align-items:center;gap:7px}
         .chart-box h4 img{width:18px;height:18px}
@@ -257,7 +270,15 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
           <div>
             <div class="card">
               <h2 class="ct"><img src="assets/icons/split/04-08.png" alt="">サマリー</h2>
-              <div class="summary-line"><div id="summary"><p style="font-size:13px;color:#94a3b8">記録を追加すると、ここに残業累計・総労働・有給の集計が表示されます。</p></div></div>
+              <div id="summary">
+                <div class="metric-grid">
+                  <div class="metric"><div class="l">残業累計</div><div class="v blue" id="m-ot">0<small>h</small></div></div>
+                  <div class="metric"><div class="l">総労働</div><div class="v" id="m-th">0<small>h</small></div></div>
+                  <div class="metric"><div class="l">有給</div><div class="v amber" id="m-pl">0<small>日</small></div></div>
+                </div>
+                <p class="summary-warn" id="summary-warn">⚠ 残業累計が45時間を超えています（36協定上限）</p>
+                <p id="summary-empty" style="font-size:12.5px;color:#94a3b8;margin-top:10px">記録を追加すると、残業累計・総労働・有給の集計とグラフがここに表示されます。</p>
+              </div>
 
               <div class="result" id="result">
                 <div class="chart-box">
@@ -266,12 +287,8 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
                 </div>
                 <div class="chart-box">
                   <h4><img src="assets/icons/split/03-04.png" alt="">36協定上限までの進捗</h4>
-                  <div style="margin-bottom:8px;">
-                    <div style="background:#e2e8f0;height:26px;border-radius:9px;overflow:hidden;position:relative;">
-                      <div id="progressBar" style="height:100%;background:var(--blue);width:0%;transition:width 0.3s;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;"></div>
-                    </div>
-                  </div>
-                  <p id="progressText" style="font-size:12px;color:#666;margin-top:4px;"></p>
+                  <div class="gauge" id="gauge"><span class="gv"><b id="gaugeVal">0%</b><span>月45h まで</span></span></div>
+                  <p id="progressText" style="font-size:12px;color:#666;margin-top:4px;text-align:center;"></p>
                 </div>
                 <div class="chart-box">
                   <h4><img src="assets/icons/split/02-02.png" alt="">月別残業時間</h4>
@@ -446,12 +463,18 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       const plStr=e.pl==1?'有給1日':e.pl==0.5?'有給0.5日':'';
       return `<div style="padding:10px;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between;align-items:center;"><span style="font-size:13px;">${e.date} 残業<b>${e.ot}</b>h 労働<b>${e.th}</b>h ${plStr}${alert36}</span><button onclick="del(${e.id})" style="color:#ef4444;border:none;background:none;cursor:pointer;font-size:16px;">×</button></div>`;
     }
-    function getSummary(entries){
+    function updateSummary(entries){
       const totalOt=entries.reduce((s,e)=>s+e.ot,0);
       const totalTh=entries.reduce((s,e)=>s+e.th,0);
       const totalPl=entries.reduce((s,e)=>s+e.pl,0);
-      const warn=totalOt>45?`<p style="color:#ef4444;font-weight:700;margin-top:8px;">⚠ 残業累計が45時間を超えています（36協定上限）</p>`:'';
-      return `<p style="font-size:14px;color:#333;">残業累計: <b>${totalOt.toFixed(1)}時間</b>　総労働: <b>${totalTh.toFixed(1)}時間</b>　有給: <b>${totalPl}日</b></p>${warn}`;
+      const set=(id,v)=>{const el=document.getElementById(id);if(el)el.firstChild.textContent=v;};
+      set('m-ot',totalOt.toFixed(1));
+      set('m-th',totalTh.toFixed(1));
+      set('m-pl',totalPl);
+      const warn=document.getElementById('summary-warn');
+      if(warn) warn.classList.toggle('show',totalOt>45);
+      const empty=document.getElementById('summary-empty');
+      if(empty) empty.style.display=entries.length?'none':'block';
     }
     function drawOverTimeChart(entries){
       if(!entries.length) return;
@@ -469,13 +492,13 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       const totalOt=entries.reduce((s,e)=>s+e.ot,0);
       const limit=45;
       const pct=Math.min((totalOt/limit)*100,100);
-      const pb=document.getElementById('progressBar');
+      const g=document.getElementById('gauge');
+      const gv=document.getElementById('gaugeVal');
       const pt=document.getElementById('progressText');
-      if(!pb||!pt) return;
-      pb.style.width=pct+'%';
-      pb.style.backgroundColor=totalOt>limit?'#ef4444':'#2563EB';
-      pb.textContent=totalOt.toFixed(1)+'h / '+limit+'h';
-      pt.textContent=totalOt>limit?`⚠ 上限超過: ${(totalOt-limit).toFixed(1)}時間`:`あと ${(limit-totalOt).toFixed(1)}時間で上限（${(100-pct).toFixed(0)}%）`;
+      const over=totalOt>limit;
+      if(g){ g.style.setProperty('--p',pct.toFixed(0)); g.style.setProperty('--gauge-c',over?'#ef4444':'#2563EB'); }
+      if(gv) gv.textContent=pct.toFixed(0)+'%';
+      if(pt) pt.textContent=over?`⚠ 上限超過: ${(totalOt-limit).toFixed(1)}時間（累計${totalOt.toFixed(1)}h）`:`累計 ${totalOt.toFixed(1)}h ／ あと ${(limit-totalOt).toFixed(1)}時間で上限`;
     }
     function drawMonthlyChart(entries){
       if(!entries.length) return;
@@ -509,10 +532,11 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       const c=document.getElementById('entries'); const ec=document.getElementById('entry-count');
       if(ec) ec.textContent=entries.length+'件';
       c.innerHTML=entries.length?entries.map(renderEntry).join(''):'<p style="text-align:center;color:#bbb;padding:16px;">まだ記録がありません</p>';
-      const s=document.getElementById('summary'); if(s) s.innerHTML=getSummary(entries);
+      updateSummary(entries);
+      updateProgressBar(entries);
       if(entries.length){
+        document.getElementById('result').classList.add('show');
         drawOverTimeChart(entries);
-        updateProgressBar(entries);
         drawMonthlyChart(entries);
       }
     }
