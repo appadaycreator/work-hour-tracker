@@ -68,8 +68,52 @@ a{text-decoration:none;color:inherit}
 .hero-shot{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(30,58,95,.22)}
 .hero-shot>img{width:100%;height:360px;object-fit:cover}
 .hero-phone{position:absolute;right:-14px;bottom:-26px;width:130px;border-radius:20px;box-shadow:0 20px 40px rgba(15,23,42,.3);border:4px solid #fff;height:auto}
-.hero-badge{position:absolute;left:-10px;top:18px;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 12px 30px rgba(15,23,42,.16);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700}
+.hero-badge{position:absolute;left:-10px;top:18px;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 12px 30px rgba(15,23,42,.16);display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;z-index:3}
 .hero-badge img{width:26px;height:26px}
+/* product mockup (hero) */
+.mock-win{background:#fff;border-radius:16px;box-shadow:0 28px 64px rgba(30,58,95,.24);border:1px solid #fff;overflow:hidden}
+.mock-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:#F1F5F9;border-bottom:1px solid var(--line)}
+.mock-bar span{width:10px;height:10px;border-radius:50%;background:#CBD5E1}
+.mock-bar span:nth-child(1){background:#F87171}.mock-bar span:nth-child(2){background:#FBBF24}.mock-bar span:nth-child(3){background:#34D399}
+.mock-bar b{margin-left:8px;font-size:12px;color:var(--gray);font-weight:700}
+.mock-body{padding:18px}
+.mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.ms{background:var(--blue-50);border:1px solid #DBEAFE;border-radius:12px;padding:12px}
+.ms>span{font-size:11px;color:var(--gray);font-weight:600}
+.ms>b{display:block;font-size:24px;font-weight:800;color:var(--ink);margin:4px 0 8px;letter-spacing:-.02em}
+.ms>b i{font-size:13px;font-weight:700;color:var(--gray);font-style:normal;margin-left:2px}
+.ms-bar{height:6px;border-radius:6px;background:#DBEAFE;overflow:hidden}
+.ms-bar>div{height:100%;border-radius:6px;background:var(--blue)}
+.ms-bar.warn>div{background:var(--amber)}.ms-bar.ok>div{background:#10B981}
+.mock-chart{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.mc-head{font-size:12px;font-weight:700;color:var(--gray);margin-bottom:12px}
+.mc-bars{display:flex;align-items:flex-end;gap:10px;height:96px}
+.mc-bars i{flex:1;background:#BFDBFE;border-radius:5px 5px 0 0}
+.mc-bars i.hi{background:var(--blue)}
+.mock-phone{position:absolute;right:-8px;bottom:-30px;width:158px;background:#fff;border:5px solid #0F172A;border-radius:24px;padding:14px 13px;box-shadow:0 22px 46px rgba(15,23,42,.32);z-index:2}
+.mp-top{font-size:11px;font-weight:800;color:var(--blue);margin-bottom:10px}
+.mp-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.mp-row span{color:var(--gray)}.mp-row b{font-weight:800}
+.mp-ok{margin-top:10px;background:#ECFDF5;color:#059669;font-size:11px;font-weight:800;text-align:center;padding:7px;border-radius:8px}
+/* dashboard mockup (showcase) */
+.mock-dash{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 44px rgba(15,23,42,.14);overflow:hidden}
+.md-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:linear-gradient(135deg,#2563EB,#3B82F6);color:#fff}
+.md-head b{font-size:15px;font-weight:800}.md-head span{font-size:12px;opacity:.9;font-weight:600}
+.md-table{width:100%;border-collapse:collapse;font-size:13px}
+.md-table th{background:var(--bg);color:var(--gray);font-weight:700;font-size:11.5px;text-align:left;padding:10px 20px}
+.md-table td{padding:11px 20px;border-top:1px solid var(--line)}
+.md-table td:first-child{font-weight:700}
+.md-table .of td{color:var(--amber);font-weight:700}
+.md-foot{display:flex;align-items:center;gap:22px;padding:18px 20px;border-top:1px solid var(--line);background:var(--bg)}
+.md-gauge{position:relative;width:88px;height:88px;border-radius:50%;background:conic-gradient(var(--amber) 0 72%,#E2E8F0 72% 100%);flex-shrink:0;display:grid;place-items:center}
+.md-gauge::before{content:"";position:absolute;width:64px;height:64px;border-radius:50%;background:#fff}
+.md-gauge i{position:relative;font-style:normal;text-align:center;font-size:11px;color:var(--gray);font-weight:700;line-height:1.3}
+.md-gauge i b{display:block;font-size:19px;color:var(--ink);font-weight:800}
+.md-mini{flex:1}
+.md-mini .t{font-size:11.5px;font-weight:700;color:var(--gray);margin-bottom:10px}
+.md-mini-bars{display:flex;align-items:flex-end;gap:8px;height:64px}
+.md-mini-bars i{flex:1;background:#BFDBFE;border-radius:4px 4px 0 0}
+.md-mini-bars i.hi{background:var(--blue)}
 /* section */
 section{padding:64px 0}
 .sec-head{text-align:center;max-width:720px;margin:0 auto 44px}
@@ -185,11 +229,27 @@ footer.ft a:hover{color:#fff}
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-shot">
-        <img src="../assets/photos/photo_01.jpg" alt="残業・労働時間トラッカーのダッシュボード">
+      <div class="mock-win">
+        <div class="mock-bar"><span></span><span></span><span></span><b>残業・労働時間トラッカー</b></div>
+        <div class="mock-body">
+          <div class="mock-stats">
+            <div class="ms"><span>今月の残業</span><b>32.5<i>h</i></b><div class="ms-bar"><div style="width:72%"></div></div></div>
+            <div class="ms"><span>36協定 上限</span><b>72<i>%</i></b><div class="ms-bar warn"><div style="width:72%"></div></div></div>
+            <div class="ms"><span>推定給与</span><b>28.4<i>万円</i></b><div class="ms-bar ok"><div style="width:60%"></div></div></div>
+          </div>
+          <div class="mock-chart">
+            <div class="mc-head">月別残業の推移（時間）</div>
+            <div class="mc-bars"><i style="height:40%"></i><i style="height:62%"></i><i style="height:48%"></i><i style="height:80%"></i><i class="hi" style="height:95%"></i><i style="height:58%"></i></div>
+          </div>
+        </div>
       </div>
       <div class="hero-badge"><img src="../assets/icons/split/01-03.png" alt="">給与を自動計算</div>
-      <img class="hero-phone" src="../assets/photos/photo_07.jpg" alt="スマホ表示">
+      <div class="mock-phone">
+        <div class="mp-top">今日の勤務</div>
+        <div class="mp-row"><span>残業</span><b>2.0h</b></div>
+        <div class="mp-row"><span>総労働</span><b>10.0h</b></div>
+        <div class="mp-ok">✓ 36協定の範囲内</div>
+      </div>
     </div>
   </div>
 </section>
@@ -264,7 +324,25 @@ footer.ft a:hover{color:#fff}
       <p>入力した記録は、表とグラフで自動的に整理。見たい数字にすぐアクセスできます。</p>
     </div>
     <div class="show">
-      <img src="../assets/photos/photo_09.jpg" alt="ダッシュボード画面">
+      <div class="mock-dash">
+        <div class="md-head"><b>記録ダッシュボード</b><span>2026年6月</span></div>
+        <table class="md-table">
+          <thead><tr><th>日付</th><th>残業</th><th>総労働</th><th>有給</th></tr></thead>
+          <tbody>
+            <tr><td>6/15</td><td>2.0h</td><td>10.0h</td><td>—</td></tr>
+            <tr><td>6/16</td><td>1.5h</td><td>9.5h</td><td>—</td></tr>
+            <tr><td>6/17</td><td>0.0h</td><td>8.0h</td><td>1.0日</td></tr>
+            <tr class="of"><td>6/18</td><td>3.0h</td><td>11.0h</td><td>—</td></tr>
+          </tbody>
+        </table>
+        <div class="md-foot">
+          <div class="md-gauge"><i><b>72%</b>36協定</i></div>
+          <div class="md-mini">
+            <div class="t">月別残業の比較</div>
+            <div class="md-mini-bars"><i style="height:45%"></i><i style="height:70%"></i><i style="height:52%"></i><i class="hi" style="height:88%"></i><i style="height:64%"></i></div>
+          </div>
+        </div>
+      </div>
       <div class="list">
         <div class="li"><img src="../assets/icons/split/04-03.png" alt=""><div><h3>記録一覧をテーブル表示</h3><p>日付・残業・総労働・有給を一覧で管理。並び替え・削除もワンタップ。</p></div></div>
         <div class="li"><img src="../assets/icons/split/03-04.png" alt=""><div><h3>36協定の進捗をゲージで表示</h3><p>上限45時間に対する達成率をリアルタイムに可視化します。</p></div></div>
